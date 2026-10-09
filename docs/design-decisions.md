@@ -1,6 +1,9 @@
 # Design decisions
 
 ## Ownership
+
+| Issue | Feature | Owner |
+|---|---|---|
 | #1 | F1 Create | Nese |
 | #2 | F2 List / View | Nese |
 | #3 | F3 Assign | Anthony |
