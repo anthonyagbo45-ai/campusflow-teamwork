@@ -40,6 +40,10 @@ Each engineer writes the unit tests for their own features.
 - Work queue: <decide: open only, or open + in_progress>, ordered critical -> low, ties by earlier ID number.
 - Next ticket ID = highest existing ID number + 1, so IDs stay unique after reload.
 - Missing JSON file = fresh start. Malformed JSON = clear error, and the file is not overwritten.
+- Bad input values (blank staff name, unknown status, affected_users of 0, invalid category or urgency) raise ValidationError.
+- Valid input that the ticket's current state does not allow (assigning or changing a resolved ticket, moving an unassigned ticket to in_progress, moving to a status out of order, reopening a ticket that is not resolved) raise InvalidTransitionError.
+- Unknown ticket IDs raise TicketNotFoundError.
+- Check order inside a function: find the ticket first (TicketNotFoundError), then validate the input (ValidationError), then check the ticket's state (InvalidTransitionError).
 
 ## Branch plan
 - Branch names: feat/1-ticket-creation, feat/3-assign-ticket, and so on.
